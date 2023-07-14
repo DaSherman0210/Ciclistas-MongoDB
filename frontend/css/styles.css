@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+  background-color: lightgray;
+}
+
+/* COMIENZO DE LA CARD */
+
+.card{
+    height: 300px !important;
+    width: 280px;
+    background-color: rgb(39, 39, 39) !important;
+    display: flex;
+    padding: .2rem;
+    border-radius: .2rem !important;
+}
+.card img-1 {
+    width: 240px;
+    margin: 20px auto auto auto ;
+    height: 150px;
+    border-radius: .2rem !important; 
+}
+
+.card p , h3 , span{
+    color: white !important;
+}
+
+.card .textos{
+    display: flex;
+    flex-direction: column;
+    margin: auto auto auto 24px;
+}
+
+.like , .dislike{
+    color: white;
+}
+
+.like:hover , .dislike:hover{
+    color: rgb(204, 204, 204);
+}
+
+.loke{
+    color: green;
+}
+
+.disloke{
+    color: red;
+}
+
+/* FIN DE LA CARD */
