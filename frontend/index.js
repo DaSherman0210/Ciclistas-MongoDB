@@ -12,9 +12,6 @@ cartasContainer.addEventListener('click', (event) => {
       target.classList.add('loke', 'fa-solid', 'fa-thumbs-up', 'fa-bounce');
     }
   }
-  if (target.classList.contains('loke', 'fa-solid', 'fa-thumbs-up', 'fa-bounce')) {
-    
-  }
 
   if (target.classList.contains('dislike')) {
     if (target.classList.contains('disloke', 'fa-solid', 'fa-thumbs-down', 'fa-bounce')) {
@@ -24,4 +21,5 @@ cartasContainer.addEventListener('click', (event) => {
       target.classList.add('disloke', 'fa-solid', 'fa-thumbs-down', 'fa-bounce');
     }
   }
+
 });
