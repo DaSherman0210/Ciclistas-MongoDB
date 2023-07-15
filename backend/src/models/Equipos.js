@@ -1,24 +1,24 @@
 import mongoose from "mongoose";
 
-const ciclistasSchema = mongoose.Schema(
+const equiposSchema = mongoose.Schema(
     {
         nombre:{
             type:String,
             required:true,
             trim:true
         },
-        edad:{
+        medallasGanadas:{
             type:Number,
             required:true,
             trim:true
         },
-        equipo:{
+        fechaCreacion:{ 
             type:String,
             required:true,
             trim:true
         },
-        mejorTiempo:{
-            type:String,
+        cantidadCiclistas:{
+            type:Number,
             required:true,
             trim:true
         }
@@ -28,6 +28,6 @@ const ciclistasSchema = mongoose.Schema(
     }
 );
 
-const ciclistas = mongoose.model("ciclistas", ciclistasSchema);
+const equipos = mongoose.model("equipos",equiposSchema,"equipos");
 
-export default ciclistas;
+export default equipos;
