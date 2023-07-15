@@ -7,17 +7,17 @@ const etapasSchema = mongoose.Schema(
             required:true,
             trim:true
         },
-        1erPuesto:{
+        primerPuesto:{
             type:String,
             required:true,
             trim:true
         },
-        2doPuesto:{
+        segundoPuesto:{
             type:String,
             required:true,
             trim:true
         },
-        3erPuesto:{
+        tercerPuesto:{
             type:String,
             required:true,
             trim:true
