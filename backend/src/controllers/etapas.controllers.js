@@ -39,7 +39,7 @@ const deleteEtapa = async (req,res) => {
 
 const updateEtapa = async (req,res) => {
     try {
-        const etapa = etapas.findOne({_id: req.params.id})
+        const etapa = await etapas.findOne({_id: req.params.id})
 
         if (req.body.nombre) {
             etapa.nombre = req.body.nombre

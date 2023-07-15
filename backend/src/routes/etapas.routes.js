@@ -7,6 +7,6 @@ router.get("/all",getEtapas);
 router.get("/all/:id",getEtapa);
 router.post("/add",insertEtapa);
 router.delete("/delete/:id",deleteEtapa);
-router.patch("/upd/:id", updateEtapa)
+router.patch("/update/:id", updateEtapa)
 
 export default router;

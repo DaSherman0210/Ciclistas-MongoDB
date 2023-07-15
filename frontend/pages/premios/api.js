@@ -1,22 +1,22 @@
-const urlAll = "http://localhost:7003/api/ciclistas/all";
-const urlAdd = "http://localhost:7003/api/ciclistas/add";
-const urlDelete = "http://localhost:7003/api/ciclistas/delete";
-const urlOne = "http://localhost:7003/api/ciclistas/all";
-const urlUpdate = "http://localhost:7003/api/ciclistas/update";
+const urlAll = "http://localhost:7003/api/premios/all";
+const urlAdd = "http://localhost:7003/api/premios/add";
+const urlDelete = "http://localhost:7003/api/premios/delete";
+const urlOne = "http://localhost:7003/api/premios/all";
+const urlUpdate = "http://localhost:7003/api/premios/update";
 
 //Read
-export const getCiclistas = async () =>{
+export const getPremios = async () =>{
     try {
-        const ciclistas = await fetch(urlAll);
-        const infoCiclistas = ciclistas.json();
-        return infoCiclistas;
+        const premios = await fetch(urlAll);
+        const infopremios = premios.json();
+        return infopremios;
     } catch (error) {
         console.log(error);
     }
 }
 
 //Insert
-export const addCiclista = async (registro) => {
+export const addPremios = async (registro) => {
     try {
       await fetch(`${urlAdd}/`, {
         method: "POST",
@@ -25,14 +25,14 @@ export const addCiclista = async (registro) => {
           "Content-Type": "application/json",
         },
       });
-      window.location = "index.html";
+      window.location.href = "./premios.html"
     } catch (error) {
         console.log(error);
     }
 };
 
 //Delete
-export const deleteCiclista = async (id) =>{
+export const deletePremio = async (id) =>{
     try {
         await fetch(`${urlDelete}/${id}`,{
             method: "DELETE",
@@ -40,7 +40,7 @@ export const deleteCiclista = async (id) =>{
                 "Content-Type":"application/json",
             }
         });
-        window.location.href = "index.html"
+        window.location.href = "./premios.html"
     } catch (error) {
         console.log(error);
     }
@@ -58,7 +58,7 @@ export async function selectOne(id) {
 };
 
 //Update
-export async function updateCiclista(data,id){
+export async function updatePremios(data,id){
     try {
             await fetch(`${urlUpdate}/${id}`,{
             method: "PATCH",
@@ -67,7 +67,7 @@ export async function updateCiclista(data,id){
                 'Content-Type':"application/json",
             },
         });
-        window.location.href = "index.html"
+        window.location.href = "./premios.html"
     } catch (error) {
         console.log(error);
     }

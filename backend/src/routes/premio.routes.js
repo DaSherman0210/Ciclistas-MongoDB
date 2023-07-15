@@ -7,6 +7,6 @@ router.get("/all", getPremio);
 router.get("/all/:id",onePremio);
 router.post("/add",addPremio);
 router.delete("/delete/:id",deletePremio);
-router.patch("/upd/:id", updatePremio)
+router.patch("/update/:id", updatePremio)
 
 export default router;

@@ -23,31 +23,32 @@ cartasContainer.addEventListener('click', (event) => {
 
 //todo -- FIN DE LA CONFIGURACION DE LAS CARDS
 /* , addCiclista, deleteCiclista, selectOne, updateCiclista  */
-import { getCiclistas , addCiclista , deleteCiclista , selectOne , updateCiclista} from "./api.js";
+import { getEquipos , selectOne , addEquipos , deleteEquipos , updateEquipos} from "./api.js";
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    mostrarCiclistas();
+    console.log(1);
+    mostrarEquipos();
 });
 
 
 //Read
-async function mostrarCiclistas() {
-    const ciclistas = await getCiclistas();
+async function mostrarEquipos() {
+    const equipo = await getEquipos();
     const contenedor = document.querySelector(".cartas");
-    ciclistas.forEach((ciclista) => {
-      const {_id,nombre,edad,equipo,mejorTiempo} = ciclista;
+    equipo.forEach((equipos) => {
+      const {_id,nombre,medallasGanadas,fechaCreacion,cantidadCiclistas} = equipos;
       contenedor.innerHTML+=`
       <div class="card">
-        <img src="./assets/img/cycling.webp" alt="... " width="240px" height="130px" style="display:flex; margin:auto;">
+        <img src="../../assets/img/equipo.avif" alt="... " width="240px" height="130px" style="display:flex; margin:auto;">
         <div class="textos">
             <div style="display:flex; align-item:center;">
               <h3>${nombre}</h3>
               <a class="editar update" data-bs-toggle="modal" data-bs-target="#modalUpdate" id="${_id}" style="display:flex; align-item:center; margin=:auto;">✏️</a>
             </div>
             <div style="display:flex; justify-content:center; align-items:center; gap:2rem;">
-              <p>${edad} años</p>
-              <p>${equipo}</p>
-              <p>${mejorTiempo}</p>
+              <p>${medallasGanadas} 🥇</p>
+              <p>${fechaCreacion}</p>
+              <p>${cantidadCiclistas} 🚴</p>
             </div>
             <div style="display: flex; gap: 1rem;">
                 <span><i class="like fa-solid fa-thumbs-up"></i></span>
@@ -68,22 +69,22 @@ formulario.addEventListener("submit", insertCiclista);
 function insertCiclista(e) {
   e.preventDefault();
   const nombre = document.querySelector("#nombre").value;
-  const edad = document.querySelector("#edad").value;
-  const equipo = document.querySelector("#equipo").value;
-  const mejorTiempo = document.querySelector("#mejorTiempo").value;
+  const medallasGanadas = document.querySelector("#medallasGanadas").value;
+  const fechaCreacion = document.querySelector("#fechaCreacion").value;
+  const cantidadCiclistas = document.querySelector("#cantidadCiclistas").value;
 
   const registro = {
     nombre,
-    mejorTiempo,
-    equipo,
-    edad
+    medallasGanadas,
+    fechaCreacion,
+    cantidadCiclistas
   };
 
 
   if (validation(registro)) {
     alert("Todos los datos son obligatorios");
   }
-  return addCiclista(registro);
+  return addEquipos(registro);
 };
 
 function validation(Objeto) {
@@ -101,11 +102,10 @@ function borrar(e){
         const idCiclista = e.target.getAttribute("id");
         const confir = confirm("Desea eliminar este Ciclista?");
         if (confir) {
-            deleteCiclista(idCiclista);
+            deleteEquipos(idCiclista);
         }
     }
 }
-
 
 //Read One
 const infoCategoria = document.querySelector(".cartas");
@@ -117,18 +117,18 @@ async function getInfo(e){
         const informacion = await selectOne(id);
         console.log(informacion);
 
-        const {_id,edad,equipo,mejorTiempo,nombre} = informacion;
+        const {_id,nombre,medallasGanadas,fechaCreacion,cantidadCiclistas} = informacion;
 
         const nombreEdit = document.querySelector('#nameUpdate');
-        const equipoEdit = document.querySelector('#equipoUpdate');
-        const mejorTiempoEdit = document.querySelector('#mejorTiempoUpdate');
-        const edadEdit = document.querySelector('#edadUpdate');
+        const medallasEquipo = document.querySelector('#medallasGanadasUpdate');
+        const fechaEquipo = document.querySelector('#fechaCreacionUpdate');
+        const cantidadEquipo = document.querySelector('#cantidadCiclistasUpdate');
         const idEdit = document.querySelector('#idEdit');
 
         nombreEdit.value = nombre;
-        equipoEdit.value = equipo;
-        mejorTiempoEdit.value = mejorTiempo;
-        edadEdit.value = edad;
+        medallasEquipo.value = medallasGanadas;
+        fechaEquipo.value = fechaCreacion;
+        cantidadEquipo.value = cantidadCiclistas;
         idEdit.value = _id;
     }
 };
@@ -142,19 +142,19 @@ function actualizar(e){
     e.preventDefault();
     const id = document.querySelector('#idEdit').value;
     const nombre = document.querySelector('#nameUpdate').value;
-    const equipo = document.querySelector('#equipoUpdate').value;
-    const mejorTiempo = document.querySelector('#mejorTiempoUpdate').value;
-    const edad = document.querySelector('#edadUpdate').value;
+    const medallasGanadas = document.querySelector('#medallasGanadasUpdate').value;
+    const fechaCreacion = document.querySelector('#fechaCreacionUpdate').value;
+    const cantidadCiclistas = document.querySelector('#cantidadCiclistasUpdate').value;
 
     const datos ={
         nombre,
-        equipo,
-        mejorTiempo,
-        edad
+        medallasGanadas,
+        fechaCreacion,
+        cantidadCiclistas
     }
     console.log(id);    
     console.log(datos);
     alert('Datos editados correctamente');
 
-    return updateCiclista(datos,id);
+    return updateEquipos(datos,id);
 }; 
