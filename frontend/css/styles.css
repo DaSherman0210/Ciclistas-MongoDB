@@ -50,4 +50,38 @@ body{
     color: red;
 }
 
+
+.button {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  position: absolute;
+  display: inline-block;
+}
+
+.button::before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: .8rem;
+    content: "X";
+    position: absolute;
+    top: -4px; /* Ajusta la posición vertical del círculo según necesites */
+    right: -204px; /* Ajusta la posición horizontal del círculo según necesites */
+    width: 78px; /* Ajusta el tamaño del círculo según necesites */
+    height: 10px; /* Ajusta el tamaño del círculo según necesites */
+    background-color: rgb(63, 63, 63); /* Ajusta el color del círculo según necesites */
+    border-radius: 20px;        
+}
+
+.button:hover {
+    color: white;
+    background-color: red;
+}
+
+.editar{
+    text-decoration: none;
+    cursor: pointer;
+}
 /* FIN DE LA CARD */
