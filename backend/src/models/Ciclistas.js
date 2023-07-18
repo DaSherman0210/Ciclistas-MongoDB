@@ -4,22 +4,22 @@ const ciclistasSchema = mongoose.Schema(
     {
         nombre:{
             type:String,
-            required:true,
+            required:[true , "El nombre es obligatorio"],
             trim:true
         },
         edad:{
             type:Number,
-            required:true,
+            required:[true , "La edad es obligatoria"],
             trim:true
         },
         equipo:{
             type:String,
-            required:true,
+            required:[true , "El nombre del equipo es necesario"],
             trim:true
         },
         mejorTiempo:{
             type:String,
-            required:true,
+            required:[true , "El mejor tiempo es requerido"],
             trim:true
         }
     },

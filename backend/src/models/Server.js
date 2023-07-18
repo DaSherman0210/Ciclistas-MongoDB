@@ -15,7 +15,7 @@ class Server {
         this.ciclistasPath = "/api/ciclistas";
         this.equiposPath = "/api/equipos";
         this.etapasPath = "/api/etapas";
-        this.premiosPath = "/api/premios"
+        this.premiosPath = "/api/premios";
 
         //* Middleware
         this.middleware();

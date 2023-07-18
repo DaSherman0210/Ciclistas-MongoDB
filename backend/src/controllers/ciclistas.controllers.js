@@ -1,4 +1,6 @@
 import ciclistas from "../models/Ciclistas.js";
+//? Para encriptar las constraseñas
+import bcryptjs from "bcryptjs";
 
 const getCiclistas = async (req,res) => {
     try {
@@ -19,10 +21,30 @@ const getCiclista = async (req,res) => {
 }
 
 const insertCiclista = async (req,res) => {
-    const ciclista = new ciclistas(req.body);
     try {
-        const newCiclista = await ciclista.save();
-        res.json(newCiclista);
+
+        const {nombre,edad,equipo,mejorTiempo} = req.body;
+        const ciclista = new ciclistas({nombre,edad,equipo,mejorTiempo});
+
+        //todo-- Validacion de nombre
+
+        const existeCiclista = await ciclistas.findOne({nombre});
+        if (existeCiclista) {
+            return res.status(400).json({
+                msg: "Este ciclista ya esta registrado"
+            })
+        }    
+
+        //todo -- Encryptacion de la contraseña
+
+        //? const salt = bcryptjs.genSaltSync();
+        //? ciclista.contraseña = bcryptjs.hashSync(password , salt);
+
+        await ciclista.save();
+        res.json({
+            "message":"post api",
+            ciclista
+        });
     } catch (error) {
         console.log(error);
     }
