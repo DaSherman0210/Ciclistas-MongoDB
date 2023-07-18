@@ -19,8 +19,19 @@ const getEquipo = async (req,res) => {
 }
 
 const insertEquipo = async (req,res) => {
-    const equipo = new equipos(req.body);
     try {
+        const {nombre,medallasGanadas,fechaCreacion,cantidadCiclistas} = req.body;
+        const equipo = new equipos({nombre,medallasGanadas,fechaCreacion,cantidadCiclistas});
+
+        //todo -- Validacion del equipo
+
+        const existeEquipo = await equipos.findOne({nombre});
+        if (existeEquipo) {
+            return res.status(400).json({
+                msg: "Este equipo ya esta registado"
+            });
+        }    
+
         const newEquipo = await equipo.save();
         res.json(newEquipo);
     } catch (error) {

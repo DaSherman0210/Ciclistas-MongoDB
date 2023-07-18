@@ -19,10 +19,22 @@ const getEtapa = async (req,res) => {
 }
 
 const insertEtapa = async (req,res) => {
-    const etapa = new etapas(req.body);
     try {
-        const nuevaEtapa = etapa.save();
-        res.json(nuevaEtapa);
+
+        const {nombre,primerPuesto,segundoPuesto,tercerPuesto,kilometrosTotales,cantidadParticipantes} = req.body;
+        const etapa = new etapas({nombre,primerPuesto,segundoPuesto,tercerPuesto,kilometrosTotales,cantidadParticipantes}) 
+
+        //todo -- Validacion de etapa
+
+        const existeEtapa = await etapas.findOne({nombre});
+        if(existeEtapa){
+            return res.status(400).json({
+                msg:"Esta etapa ya se registro"
+            })
+        }
+
+        const newEtapa = await etapa.save();
+        res.json(newEtapa);
     } catch (error) {
         console.log(error);
     }

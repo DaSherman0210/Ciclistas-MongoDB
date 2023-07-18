@@ -11,8 +11,19 @@ const onePremio = async (req, res) =>{
 }
 
 const addPremio = async (req, res) =>{
-    const premio = new premios(req.body);
     try {
+        const {Ganador,segundoPuesto,tercerPuesto,mejorTiempo,diferenciaMinutos1roy2do} = req.body;
+        const premio = new premios({Ganador,segundoPuesto,tercerPuesto,mejorTiempo,diferenciaMinutos1roy2do});
+
+        //todo -- Validacion de premio
+
+        const existePremio = await premios.findOne({Ganador});
+        if (existePremio) {
+            return res.status(400).json({
+                msg:"Este premio ya esta registrado"
+            });
+        }
+
         const nuevoPremio = await premio.save();
         res.json(nuevoPremio)
     } catch (error) {
